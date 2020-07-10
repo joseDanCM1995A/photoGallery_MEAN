@@ -1,0 +1,33 @@
+<!-- Asegurango que hay una photo ya, para evitar el error undefined -->
+<div class="row center" *ngIf="!photo ; else mainContent">
+    <h1>Loading</h1>
+</div>
+
+<ng-template #mainContent>
+    <div class="container ">
+        <div class="row">
+            <div class="col s12 m5 cardMetrica">
+                <div class="card ">
+                    <img class="responsive-img" [src]="'http://localhost:3000/' + photo.imagePath" alt="">
+                </div>
+            </div>
+            <div class="col s12 m7 cardMetrica center">
+                <form (submit)="updatePhoto(title, description)">
+                    <span class="card-title zero">Editar <span class="teal-text"> {{photo.title}}</span> </span>
+                    <div class="input-field col s12  ">
+                        <input id="first_name" type="text" class="validate" [value]="photo.title" required #title>
+                        <label for="first_name"></label>
+                    </div>
+                    <div class="input-field col s12 ">
+                        <textarea id="textarea1" class="materialize-textarea validate" [value]="photo.description" required #description></textarea>
+                        <label for="textarea1"></label>
+                    </div>
+                    <div class="input-field col s12 center zero">
+                        <button class="btn blue waves-effect waves-light space"><i class="material-icons center">check</i></button>
+                        <button class="btn red waves-effect waves-light" (click)="deletePhoto(photo._id)"><i class="material-icons center">delete</i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</ng-template>

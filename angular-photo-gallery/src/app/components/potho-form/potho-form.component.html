@@ -1,0 +1,31 @@
+<div class="container padding">
+    <div class="row ">
+        <div class="col s3"></div>
+        <div class="col s12 m6">
+            <div class="row card-panel s12 center">
+                <form (submit)="uploadPhoto(title, description)">
+                    <span class="card-title teal-text text-darken-2">Agregar nueva foto</span>
+                    <div class="input-field col s12 margin0">
+                        <input id="first_name" type="text" class="validate" required #title>
+                        <label for="first_name">Nombre:</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <textarea id="textarea1" class="materialize-textarea validate" required #description></textarea>
+                        <label for="textarea1">Descripción:</label>
+                    </div>
+                    <div class="input-field col s12 center">
+                        <!-- el change es para lamzar una función cada que se detecte un cambio -->
+                        <input type="file" style="display: none;" (change)="onPhotoSelected($event)" #photoInput>
+                        <!-- el click es para enlazar al botón y permita lanzar el gestor de archivos para seleccionar la imagen -->
+                        <!-- el src lo manejamos con angular para poder hacer una comparación -->
+                        <img [src]=" photoSelected || 'assets/noimage.png'" class="responsive-img img " alt="" (click)="photoInput.click()">
+                    </div>
+                    <div class="input-field col s12 center">
+                        <button class="btn waves-effect waves-light"><i class="material-icons center">send</i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col s3"></div>
+    </div>
+</div>

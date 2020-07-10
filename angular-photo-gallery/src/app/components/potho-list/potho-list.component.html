@@ -1,0 +1,33 @@
+<div class="row center padmar" *ngIf="photos.length===0 ; else mainContent">
+    <div class="card-panel s12">
+        <h1 class="teal-text text-darken-4">¿Aún no tienes ninguna foto?</h1>
+        <h4 class="teal-text text-darken-2">Sube una o unas cuantas :)</h4>
+        <a routerLink="/photos/new" class="btn waves-effect waves-light">Empecemos</a>
+    </div>
+</div>
+
+
+<ng-template #mainContent>
+    <div class="row">
+        <!-- haciendo el recorrido con la directiva de photos -->
+        <div class="col s12 m4 cardMetric" *ngFor="let photo of photos">
+            <div class="card small hoverable ">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <!-- la imagen la maneja angular [src] -->
+                    <img class="activator responsive-img circle responsive-img" [src]="'http://localhost:3000/' + photo.imagePath">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4 center">{{photo.title}}<i class="material-icons right">chevron_right</i></span>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4 center">{{photo.title}}<i class="material-icons right">close</i></span>
+                    <p>{{photo.description}}</p>
+                    <div class="input-field col s12 center">
+                        <button (click)="selectedCard(photo._id)" class="btn waves-effect waves-light"><i class="material-icons center">mode_edit</i></button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
